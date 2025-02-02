@@ -36,24 +36,6 @@ namespace Projeto.Controllers
             return Ok(tarefaExistente);
         }
 
-        // cria uma nova tarefa via post
-        [HttpPost("{id}")]
-        public IActionResult Post(int id, Models.tarefaList novaTarefa)
-        {
-
-            // armazena na variável o primeiro que atende às condições
-            var tarefaExistente = _tarefas.FirstOrDefault(t => t.TarefaId == id);
-
-            // se for diferente de null, então existe
-            if (tarefaExistente != null)
-            {
-                return Conflict(tarefaExistente);
-            }
-            
-            _tarefas.Add(novaTarefa);
-            return Ok(novaTarefa);
-        }
-
         // atualiza uma tarefa via id
         [HttpPut("{id}", Name = "UpdateTarefa")]
         public IActionResult Put(int id, Models.tarefaList tarefaAtualizada)
@@ -72,6 +54,24 @@ namespace Projeto.Controllers
             tarefa.Date = tarefaAtualizada.Date;
 
             return Ok(_tarefas);
+        }
+
+        // cria uma nova tarefa via post
+        [HttpPost("{id}")]
+        public IActionResult Post(int id, Models.tarefaList novaTarefa)
+        {
+
+            // armazena na variável o primeiro que atende às condições
+            var tarefaExistente = _tarefas.FirstOrDefault(t => t.TarefaId == id);
+
+            // se for diferente de null, então existe
+            if (tarefaExistente != null)
+            {
+                return Conflict(tarefaExistente);
+            }
+            
+            _tarefas.Add(novaTarefa);
+            return Ok(novaTarefa);
         }
 
         // deletar tarefas via id
