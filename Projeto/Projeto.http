@@ -1,0 +1,6 @@
+@Projeto_HostAddress = http://localhost:5268
+
+GET {{Projeto_HostAddress}}/tarefaList/
+Accept: application/json
+
+###
