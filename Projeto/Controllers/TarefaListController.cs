@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Projeto.Models;
+using Projeto.Data;
 
 namespace Projeto.Controllers
 {
@@ -9,11 +10,14 @@ namespace Projeto.Controllers
     public class TarefaListController : ControllerBase
     {
 
-        private static List<Models.tarefaList> _tarefas = new()
-        {
-            new Models.tarefaList { TarefaId = 1, NomeTarefa = "Fazer compras", DescricaoTarefa = "Macarrão", Date = DateOnly.FromDateTime(DateTime.Now) },
-            new Models.tarefaList { TarefaId = 2, NomeTarefa = "Estudar C#", DescricaoTarefa = "WebAPI", Date = DateOnly.FromDateTime(DateTime.Now.AddDays(1)) }
-        };
+        //private static List<Models.tarefaList> _tarefas = new()
+        //{
+        //    new Models.tarefaList { TarefaId = 1, NomeTarefa = "Fazer compras", DescricaoTarefa = "Macarrão", Date = DateOnly.FromDateTime(DateTime.Now) },
+        //    new Models.tarefaList { TarefaId = 2, NomeTarefa = "Estudar C#", DescricaoTarefa = "WebAPI", Date = DateOnly.FromDateTime(DateTime.Now.AddDays(1)) }
+        //};
+
+        private static List<Models.tarefaList> _tarefas = TarefaData._tarefas; // Correção aqui
+
 
         // busca todas as tarefas
         [HttpGet]
